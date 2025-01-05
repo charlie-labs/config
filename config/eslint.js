@@ -50,6 +50,7 @@ export const config = [
   {
     plugins: {
       import: (await import('eslint-plugin-import')).default,
+      perfectionist: (await import('eslint-plugin-perfectionist')).default,
     },
     languageOptions: {
       globals: {
@@ -66,32 +67,6 @@ export const config = [
       'getter-return': ERROR,
       'import/no-duplicates': [ERROR, { 'prefer-inline': true }],
       'import/no-relative-packages': ERROR,
-      'sort-imports': [
-        'error',
-        {
-          ignoreCase: false,
-          ignoreDeclarationSort: false,
-          ignoreMemberSort: false,
-          memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-          allowSeparatedGroups: false,
-        },
-      ],
-      'import/order': [
-        ERROR,
-        {
-          alphabetize: { order: 'asc', caseInsensitive: true },
-          'newlines-between': 'always',
-          pathGroups: [{ pattern: '#*/**', group: 'internal' }],
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-          ],
-        },
-      ],
       'new-parens': ERROR,
       'no-array-constructor': ERROR,
       'no-caller': ERROR,
@@ -184,6 +159,9 @@ export const config = [
         { terms: ['FIXME'], location: 'anywhere' },
       ],
       'object-shorthand': ERROR,
+      'perfectionist/sort-imports': ERROR,
+      'perfectionist/sort-named-imports': ERROR,
+      'perfectionist/sort-named-exports': ERROR,
       'prefer-const': ERROR,
       'prefer-object-spread': ERROR,
       'require-yield': ERROR,
