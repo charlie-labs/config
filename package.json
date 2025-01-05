@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "@dexaai/config",
+  "version": "0.0.0",
+  "description": "Shared config for Dexa's TypeScript projects",
+  "repository": "dexaai/config",
+  "license": "MIT",
+  "author": "Riley Tomasek <riley@dexa.ai>",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "config"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./prettier": "./config/prettier.js",
+    "./tsconfig-node": "./config/tsconfig-node.json",
+    "./typescript-react": "./config/tsconfig-react.json",
+    "./reset.d.ts": "./config/reset.d.ts",
+    "./eslint": "./config/eslint.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "fix": "eslint . --fix && prettier . --write",
+    "lint": "eslint .",
+    "prepublishOnly": "bun run typecheck && bun run lint",
+    "release": "np",
+    "test": "exit 0",
+    "typecheck": "tsc"
+  },
+  "prettier": "./config/prettier.js",
+  "dependencies": {
+    "@eslint/js": "^9.17.0",
+    "@total-typescript/ts-reset": "^0.6.1",
+    "@vitest/eslint-plugin": "^1.1.24",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest-dom": "^5.5.0",
+    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-testing-library": "^7.1.1",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.19.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "eslint": "^9.17.0",
+    "np": "^10.1.0",
+    "prettier": "^3.4.2",
+    "react": "^18.3.1",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "eslint": ">= 9",
+    "prettier": ">= 3",
+    "typescript": ">= 5"
+  }
+}
