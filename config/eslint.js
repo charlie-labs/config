@@ -27,6 +27,7 @@ const vitestFiles = ['**/__tests__/**/*', '**/*.test.*', '**/*.spec.*'];
 const testFiles = ['**/tests/**', '**/#tests/**', ...vitestFiles];
 const playwrightFiles = ['**/e2e/**'];
 
+/** @type {import("eslint").Linter.Config[]} */
 export const config = [
   {
     ignores: [

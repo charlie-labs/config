@@ -30,7 +30,7 @@ Create a `eslint.config.js` file in the root of the project:
 import { config } from '@dexaai/config/eslint';
 
 /** @type {import("eslint").Linter.Config[]} */
-export default [...dexaConfig];
+export default [...config];
 ```
 
 ### 4. Configure TypeScript
@@ -47,3 +47,7 @@ Create a `tsconfig.json` file in the root that extends `@dexaai/config/tsconfig-
   },
 }
 ```
+
+### 5. Add TypeScript Reset
+
+This is just a convenient export of [`@total-typescript/ts-reset`](https://www.totaltypescript.com/ts-reset).
