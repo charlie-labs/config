@@ -176,6 +176,16 @@ export const config = [
     },
   },
 
+  hasReact
+    ? {
+        settings: {
+          react: {
+            version: 'detect',
+          },
+        },
+      }
+    : null,
+
   // General rules for JSX/TSX files
   hasReact
     ? {
@@ -184,6 +194,7 @@ export const config = [
           react: (await import('eslint-plugin-react')).default,
         },
         languageOptions: {
+          globals: { React: 'readonly' },
           parser: hasTypeScript
             ? (await import('typescript-eslint')).parser
             : undefined,
