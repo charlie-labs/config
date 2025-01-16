@@ -373,6 +373,15 @@ export const config = [
     },
   },
 
+  {
+    files: testFiles,
+    rules: {
+      // Disable `any` rules for tests
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+    },
+  },
+
   hasTestingLibrary
     ? {
         files: testFiles,
@@ -401,10 +410,6 @@ export const config = [
           'jest-dom/prefer-enabled-disabled': ERROR,
           'jest-dom/prefer-focus': ERROR,
           'jest-dom/prefer-required': ERROR,
-
-          // Disable `any` rules for tests
-          '@typescript-eslint/no-explicit-any': 'off',
-          '@typescript-eslint/ban-ts-comment': 'off',
         },
       }
     : null,
