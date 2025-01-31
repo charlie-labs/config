@@ -33,25 +33,25 @@
   },
   "prettier": "./config/prettier.js",
   "dependencies": {
-    "@eslint/js": "^9.17.0",
+    "@eslint/js": "^9.19.0",
     "@total-typescript/ts-reset": "^0.6.1",
-    "@vitest/eslint-plugin": "^1.1.24",
+    "@vitest/eslint-plugin": "^1.1.25",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest-dom": "^5.5.0",
-    "eslint-plugin-perfectionist": "^4.6.0",
-    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-perfectionist": "^4.7.0",
+    "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-testing-library": "^7.1.1",
     "globals": "^15.14.0",
-    "typescript-eslint": "^8.19.0"
+    "typescript-eslint": "^8.22.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
-    "eslint": "^9.17.0",
-    "np": "^10.1.0",
+    "eslint": "^9.19.0",
+    "np": "^10.2.0",
     "prettier": "^3.4.2",
     "react": "^18.3.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   },
   "peerDependencies": {
     "eslint": ">= 9",
