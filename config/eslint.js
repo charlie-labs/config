@@ -173,6 +173,7 @@ export const config = [
 
       // Disable rules from presets
       'no-unused-vars': 'off',
+      'no-useless-escape': 'off',
     },
   },
 
