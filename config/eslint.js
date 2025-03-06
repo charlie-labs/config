@@ -115,7 +115,6 @@ export const config = [
       'no-octal': ERROR,
       'no-process-env': ERROR,
       'no-redeclare': ERROR,
-      'no-return-await': ERROR,
       'no-script-url': ERROR,
       'no-self-assign': ERROR,
       'no-self-compare': ERROR,
@@ -174,6 +173,7 @@ export const config = [
       // Disable rules from presets
       'no-unused-vars': 'off',
       'no-useless-escape': 'off',
+      'no-return-await': 'off',
     },
   },
 
