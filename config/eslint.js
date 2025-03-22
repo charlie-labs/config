@@ -56,6 +56,7 @@ export const config = [
       globals: {
         ...globals.browser,
         ...globals.node,
+        Bun: true,
       },
       parserOptions: {
         warnOnUnsupportedTypeScriptVersion: false,
@@ -63,7 +64,6 @@ export const config = [
     },
     rules: {
       'array-callback-return': ERROR,
-      'dot-notation': ERROR,
       'getter-return': ERROR,
       'import/no-duplicates': [ERROR, { 'prefer-inline': true }],
       'import/no-relative-packages': ERROR,
@@ -171,6 +171,7 @@ export const config = [
       eqeqeq: [ERROR, 'always', { null: 'ignore' }],
 
       // Disable rules from presets
+      'dot-notation': 'off',
       'no-unused-vars': 'off',
       'no-useless-escape': 'off',
       'no-return-await': 'off',
