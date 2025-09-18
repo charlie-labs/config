@@ -1,10 +1,10 @@
-# @dexaai/config
+# @charlie-labs/config
 
-Standardized TypeScript, ESLint, and Prettier configuration for Dexa's TypeScript projects.
+Standardized TypeScript, ESLint, and Prettier configuration for Charlie Lab's TypeScript projects.
 
 Why does this exist?
 
-1. Consistent and familiar configuration across Dexa projects
+1. Consistent and familiar configuration across Charlie Labs projects
 2. Reduces configuration boilerplate in each project
 3. Reduces time spent keeping configuration updated and in sync
 
@@ -12,14 +12,14 @@ Why does this exist?
 
 ### 1. Add Dependency
 
-Install `@dexaai/config` as a dev dependency.
+Install `@charlie-labs/config` as a dev dependency.
 
 ### 2. Configure Prettier
 
 Add the following line to your `package.json`:
 
 ```json
-  "prettier": "@dexaai/config/prettier",
+  "prettier": "@charlie-labs/config/prettier",
 ```
 
 ### 3. Configure ESLint
@@ -27,7 +27,7 @@ Add the following line to your `package.json`:
 Create a `eslint.config.js` file in the root of the project:
 
 ```js
-import { config } from '@dexaai/config/eslint';
+import { config } from '@charlie-labs/config/eslint';
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [...config];
@@ -35,11 +35,11 @@ export default [...config];
 
 ### 4. Configure TypeScript
 
-Create a `tsconfig.json` file in the root that extends `@dexaai/config/tsconfig-node` or `@dexaai/config/tsconfig-react`. You will still need to specify `includes` and any `compilerOptions` you want to add or override.
+Create a `tsconfig.json` file in the root that extends `@charlie-labs/config/tsconfig-node` or `@charlie-labs/config/tsconfig-react`. You will still need to specify `includes` and any `compilerOptions` you want to add or override.
 
 ```jsonc
 {
-  "extends": "@dexaai/config/tsconfig-node",
+  "extends": "@charlie-labs/config/tsconfig-node",
   "include": ["src"],
   "exclude": ["**/node_modules", "**/.*/"],
   "compilerOptions": {

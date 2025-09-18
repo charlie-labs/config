@@ -1,11 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "@dexaai/config",
+  "name": "@charlie-labs/config",
   "version": "0.0.10",
-  "description": "Shared config for Dexa's TypeScript projects",
-  "repository": "dexaai/config",
+  "description": "Shared config for Charlie Lab's TypeScript projects",
+  "repository": "charlie-labs/config",
   "license": "MIT",
-  "author": "Riley Tomasek <riley@dexa.ai>",
+  "author": "Riley Tomasek <riley@charlielabs.ai>",
   "type": "module",
   "main": "index.js",
   "files": [
