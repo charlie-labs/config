@@ -190,12 +190,20 @@ export const config = [
 
       // Hard bans for TS escape hatches
       // (These will be relaxed for tests and JS files later in this config.)
+      // Uses :has/:matches selectors; requires ESLint 8.45+ (esquery 1.5+) support.
       'no-restricted-syntax': [
         ERROR,
         {
-          selector: 'TSAsExpression[expression.type="TSAsExpression"]',
+          selector:
+            ':matches(TSAsExpression, TSTypeAssertion):has(> :matches(TSAsExpression, TSTypeAssertion))',
           message:
-            'Double casts (e.g. x as unknown as T) are banned – use validation, generics, or a typed adapter instead.',
+            'Double casts (e.g. x as unknown as T or <T>(x as unknown)) are banned – use validation, generics, or a typed adapter instead.',
+        },
+        {
+          selector:
+            ':matches(TSAsExpression, TSTypeAssertion):has(> :matches(ParenthesizedExpression, TSNonNullExpression):has(:matches(TSAsExpression, TSTypeAssertion)))',
+          message:
+            'Double casts (including parentheses or non-null wrappers, e.g. (x as unknown)! as T) are banned – use validation, generics, or a typed adapter instead.',
         },
       ],
 
