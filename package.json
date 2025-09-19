@@ -28,7 +28,7 @@
     "lint": "eslint .",
     "prepublishOnly": "bun run typecheck && bun run lint",
     "release": "np",
-    "test": "exit 0",
+    "test": "bun test",
     "typecheck": "tsc"
   },
   "prettier": "./config/prettier.js",
@@ -46,11 +46,13 @@
     "typescript-eslint": "^8.44.0"
   },
   "devDependencies": {
+    "@types/node": "^22",
     "@types/react": "^18.3.24",
+    "bun-types": "^1.2.22",
     "eslint": "^9.35.0",
     "np": "^10.2.0",
-    "react": "^18.3.1",
     "prettier": "^3.6.2",
+    "react": "^18.3.1",
     "typescript": "^5.9.2"
   },
   "peerDependencies": {

@@ -7,3 +7,5 @@ declare module './eslint.js' {
   // Default export
   export default config;
 }
+
+export {};
