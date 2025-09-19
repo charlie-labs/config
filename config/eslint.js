@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint';
 const ERROR = 'error';
 
 /**
- * Check if a package is installed
+ * Check if a package is installed and resolvable from this config.
  * @param {string} pkg
  * @returns {boolean}
  */
@@ -23,8 +23,22 @@ const hasReact = has('react');
 const hasTestingLibrary = has('@testing-library/dom');
 const hasJestDom = has('@testing-library/jest-dom');
 const hasVitest = has('vitest');
-const vitestFiles = ['**/__tests__/**/*', '**/*.test.*', '**/*.spec.*'];
-const testFiles = ['**/tests/**', '**/#tests/**', ...vitestFiles];
+
+/**
+ * Treat these as "test contexts" for both rules and plugins.
+ */
+const testFiles = [
+  '**/tests/**',
+  '**/#tests/**',
+  '**/test/**',
+  '**/test-scripts/**',
+  '**/src/test/**',
+  '**/__tests__/**',
+  '**/*.test.*',
+  '**/*.spec.*',
+  '**/test-data.ts',
+];
+
 const playwrightFiles = ['**/e2e/**'];
 
 /** @type {import("eslint").Linter.Config[]} */
@@ -39,6 +53,10 @@ export const config = [
       '**/server-build/**',
       '**/dist/**',
       '**/coverage/**',
+      // extra
+      'knip.ts',
+      'eslint.config.js',
+      '**/*.snap',
     ],
   },
 
@@ -170,7 +188,18 @@ export const config = [
       curly: [ERROR, 'multi-line'],
       eqeqeq: [ERROR, 'always', { null: 'ignore' }],
 
-      // Disable rules from presets
+      // Hard bans for TS escape hatches
+      // (These will be relaxed for tests and JS files later in this config.)
+      'no-restricted-syntax': [
+        ERROR,
+        {
+          selector: 'TSAsExpression[expression.type="TSAsExpression"]',
+          message:
+            'Double casts (e.g. x as unknown as T) are banned – use validation, generics, or a typed adapter instead.',
+        },
+      ],
+
+      // Disable/override rules from presets (as in your original)
       'dot-notation': 'off',
       'no-unused-vars': 'off',
       'no-useless-escape': 'off',
@@ -178,17 +207,18 @@ export const config = [
     },
   },
 
+  {
+    languageOptions: { globals: { Bun: true } },
+  },
+
+  // React settings (if present)
   hasReact
     ? {
-        settings: {
-          react: {
-            version: 'detect',
-          },
-        },
+        settings: { react: { version: 'detect' } },
       }
     : null,
 
-  // General rules for JSX/TSX files
+  // General rules for JSX/TSX files (React)
   hasReact
     ? {
         files: ['**/*.tsx', '**/*.jsx'],
@@ -274,7 +304,7 @@ export const config = [
             },
           ],
           '@typescript-eslint/naming-convention': [
-            'error',
+            ERROR,
             {
               selector: 'typeLike',
               format: ['PascalCase'],
@@ -346,6 +376,12 @@ export const config = [
           '@typescript-eslint/unified-signatures': ERROR,
           'import/consistent-type-specifier-style': [ERROR, 'prefer-inline'],
 
+          // Stricter type constraints
+          '@typescript-eslint/consistent-type-assertions': ERROR,
+          '@typescript-eslint/no-explicit-any': ERROR,
+          '@typescript-eslint/no-non-null-assertion': ERROR,
+          '@typescript-eslint/no-unnecessary-type-assertion': ERROR,
+
           // Disable rules from presets
           '@typescript-eslint/consistent-type-definitions': 'off',
           '@typescript-eslint/no-namespace': 'off',
@@ -375,15 +411,22 @@ export const config = [
     },
   },
 
+  // Relaxations for tests (merged original + extension)
   {
     files: testFiles,
     rules: {
-      // Disable `any` rules for tests
-      '@typescript-eslint/no-explicit-any': 'off',
+      // From original
       '@typescript-eslint/ban-ts-comment': 'off',
+      // From extension
+      '@typescript-eslint/consistent-type-assertions': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+      'no-restricted-syntax': 'off',
     },
   },
 
+  // Testing-library, jest-dom, and vitest rules (only if installed)
   hasTestingLibrary
     ? {
         files: testFiles,
@@ -428,6 +471,18 @@ export const config = [
         },
       }
     : null,
+
+  // Disable type-information-dependent rules for non-TS files (from the extension)
+  {
+    files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
+    rules: {
+      '@typescript-eslint/consistent-type-assertions': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+      'no-restricted-syntax': 'off',
+    },
+  },
 ].filter(Boolean);
 
 export default config;
