@@ -26,8 +26,7 @@
   "scripts": {
     "fix": "eslint . --fix && prettier . --write",
     "lint": "eslint .",
-    "prepublishOnly": "bun run typecheck && bun run lint",
-    "release": "np",
+    "prepublishOnly": "npm run typecheck && npm run lint",
     "test": "bun test",
     "typecheck": "tsc"
   },
@@ -50,7 +49,6 @@
     "@types/react": "^18.3.24",
     "bun-types": "^1.2.22",
     "eslint": "^9.35.0",
-    "np": "^10.2.0",
     "prettier": "^3.6.2",
     "react": "^18.3.1",
     "typescript": "^5.9.2"

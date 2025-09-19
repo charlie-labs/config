@@ -1,11 +1,13 @@
 import { expect, test } from 'bun:test';
 import { spawnSync } from 'node:child_process';
-import { resolve } from 'node:path';
+import { createRequire } from 'node:module';
 
-const TSC = resolve('node_modules/.bin/tsc');
+const require = createRequire(import.meta.url);
+const TSC = require.resolve('typescript/bin/tsc');
 
 test('tsconfig-node can typecheck a trivial project', () => {
-  const { status, stderr } = spawnSync(TSC, [
+  const { status, stderr } = spawnSync(process.execPath, [
+    TSC,
     '-p',
     'sample/tsconfig.node.json',
     '--noEmit',
@@ -15,7 +17,8 @@ test('tsconfig-node can typecheck a trivial project', () => {
 });
 
 test('tsconfig-react can typecheck a trivial TSX project', () => {
-  const { status, stderr } = spawnSync(TSC, [
+  const { status, stderr } = spawnSync(process.execPath, [
+    TSC,
     '-p',
     'sample/tsconfig.react.json',
     '--noEmit',
