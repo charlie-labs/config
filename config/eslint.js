@@ -219,6 +219,18 @@ export const config = [
     languageOptions: { globals: { Bun: true } },
   },
 
+  hasTypeScript
+    ? {
+        files: ['**/*.ts?(x)'],
+        rules: {
+          '@typescript-eslint/consistent-type-assertions': ERROR,
+          '@typescript-eslint/no-explicit-any': ERROR,
+          '@typescript-eslint/no-non-null-assertion': ERROR,
+          '@typescript-eslint/no-unnecessary-type-assertion': ERROR,
+        },
+      }
+    : null,
+
   // React settings (if present)
   hasReact
     ? {
@@ -383,12 +395,6 @@ export const config = [
           ],
           '@typescript-eslint/unified-signatures': ERROR,
           'import/consistent-type-specifier-style': [ERROR, 'prefer-inline'],
-
-          // Stricter type constraints
-          '@typescript-eslint/consistent-type-assertions': ERROR,
-          '@typescript-eslint/no-explicit-any': ERROR,
-          '@typescript-eslint/no-non-null-assertion': ERROR,
-          '@typescript-eslint/no-unnecessary-type-assertion': ERROR,
 
           // Disable rules from presets
           '@typescript-eslint/consistent-type-definitions': 'off',
