@@ -36,7 +36,9 @@ const testFiles = [
   '**/__tests__/**',
   '**/*.test.*',
   '**/*.spec.*',
-  '**/test-data.ts',
+  '**/test-data.*',
+  '**/test-data/**',
+  '**/{fixtures,fixture,mocks,__mocks__,mock-data,stubs}/**',
 ];
 
 const playwrightFiles = ['**/e2e/**'];
