@@ -77,3 +77,15 @@ Notes:
 - Don’t push git tags manually; the workflow creates the tag during the GitHub Release step.
 - If no new version is present (i.e., `package.json` didn’t change), the publish step is skipped and no release is created.
 - The publish step skips npm lifecycle scripts; typecheck and lint run explicitly in the workflow.
+
+### npm auth for the GitHub workflow
+
+To publish to npm from GitHub Actions, add an npm access token as a secret named `NPM_TOKEN`:
+
+1. Create an npm access token with at least “Publish” permission in your npm account settings.
+2. In this repository’s Settings → Secrets and variables → Actions, add a new Repository secret named `NPM_TOKEN` with that token’s value. An Organization secret works too.
+3. Nothing else is required—our release workflow already:
+   - requests `id-token: write` for npm provenance support, and
+   - uses `actions/setup-node@v4` to provide a recent npm version during publish.
+
+If your org enforces “Require provenance” on npm, the existing `provenance: true` input on the publish step satisfies it.

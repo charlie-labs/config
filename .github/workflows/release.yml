@@ -30,6 +30,11 @@ jobs:
         with:
           bun-version: "1.2.21"
 
+      - name: Setup Node.js (for npm)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
@@ -38,6 +43,13 @@ jobs:
 
       - name: ESLint
         run: bun run lint
+
+      - name: Tests
+        run: bun run test
+
+      - name: Build (if present)
+        # Run build if the repo defines one; do nothing otherwise
+        run: npm run build --if-present
 
       - name: Publish (npm)
         id: publish
