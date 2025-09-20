@@ -6,6 +6,7 @@
   "repository": "charlie-labs/config",
   "license": "MIT",
   "author": "Riley Tomasek <riley@charlielabs.ai>",
+  "packageManager": "bun@1.2.21",
   "type": "module",
   "main": "index.js",
   "files": [
