@@ -20,17 +20,15 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        # Pin to the commit SHA behind actions/checkout@v4
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
       - name: Setup Bun
-        # Pin to the commit SHA behind oven-sh/setup-bun@v2
-        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+        uses: oven-sh/setup-bun@v2
         with:
-          # Pin Bun to a specific version to avoid 400s on 1.x and improve reproducibility
-          bun-version: "1.2.21"
+          # Read Bun version from package.json (packageManager field)
+          bun-version-file: "package.json"
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
