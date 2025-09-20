@@ -55,6 +55,8 @@ export const config = [
       '**/server-build/**',
       '**/dist/**',
       '**/coverage/**',
+      // Always ignore fixtures directories and their children
+      '**/{fixtures,__fixtures__}/**',
       // extra
       'knip.ts',
       'eslint.config.js',

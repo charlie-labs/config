@@ -17,6 +17,7 @@
   "exports": {
     ".": "./index.js",
     "./prettier": "./config/prettier.js",
+    "./prettierignore": "./config/prettierignore",
     "./tsconfig-node": "./config/tsconfig-node.json",
     "./typescript-react": "./config/tsconfig-react.json",
     "./reset.d.ts": "./config/reset.d.ts",
