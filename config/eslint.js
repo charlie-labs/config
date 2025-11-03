@@ -397,13 +397,14 @@ export const config = [
             ERROR,
             { allowTernary: true },
           ],
-          '@typescript-eslint/unified-signatures': ERROR,
           'import/consistent-type-specifier-style': [ERROR, 'prefer-inline'],
 
           // Disable rules from presets
           '@typescript-eslint/consistent-type-definitions': 'off',
           '@typescript-eslint/no-namespace': 'off',
           '@typescript-eslint/no-unused-vars': 'off',
+          // Causes "TypeError: typeParameters.params is not iterable" error on valid code
+          '@typescript-eslint/unified-signatures': 'off',
         },
       }
     : null,
