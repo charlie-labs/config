@@ -136,7 +136,7 @@ export const config = [
       'no-new-wrappers': ERROR,
       'no-octal': ERROR,
       'no-process-env': ERROR,
-      'no-redeclare': ERROR,
+      'no-redeclare': 'off',
       'no-script-url': ERROR,
       'no-self-assign': ERROR,
       'no-self-compare': ERROR,
@@ -146,7 +146,7 @@ export const config = [
       'no-template-curly-in-string': ERROR,
       'no-this-before-super': ERROR,
       'no-throw-literal': ERROR,
-      'no-undef': ERROR,
+      'no-undef': 'off',
       'no-undef-init': ERROR,
       'no-unexpected-multiline': ERROR,
       'no-unreachable': ERROR,
@@ -401,6 +401,7 @@ export const config = [
 
           // Disable rules from presets
           '@typescript-eslint/consistent-type-definitions': 'off',
+          '@typescript-eslint/no-empty-object-type': 'off',
           '@typescript-eslint/no-namespace': 'off',
           '@typescript-eslint/no-unused-vars': 'off',
           // Causes "TypeError: typeParameters.params is not iterable" error on valid code
