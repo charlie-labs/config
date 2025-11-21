@@ -399,8 +399,20 @@ export const config = [
           ],
           'import/consistent-type-specifier-style': [ERROR, 'prefer-inline'],
 
+          // Keep JS protected by core rules while allowing TS overload/declaration
+          // patterns and avoiding redundant reports in TS files.
+          'no-redeclare': 'off',
+          '@typescript-eslint/no-redeclare': [
+            ERROR,
+            {
+              ignoreDeclarationMerge: true,
+            },
+          ],
+          'no-undef': 'off',
+
           // Disable rules from presets
           '@typescript-eslint/consistent-type-definitions': 'off',
+          '@typescript-eslint/no-empty-object-type': 'off',
           '@typescript-eslint/no-namespace': 'off',
           '@typescript-eslint/no-unused-vars': 'off',
           // Causes "TypeError: typeParameters.params is not iterable" error on valid code
