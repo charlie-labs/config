@@ -136,7 +136,7 @@ export const config = [
       'no-new-wrappers': ERROR,
       'no-octal': ERROR,
       'no-process-env': ERROR,
-      'no-redeclare': 'off',
+      'no-redeclare': ERROR,
       'no-script-url': ERROR,
       'no-self-assign': ERROR,
       'no-self-compare': ERROR,
@@ -146,7 +146,7 @@ export const config = [
       'no-template-curly-in-string': ERROR,
       'no-this-before-super': ERROR,
       'no-throw-literal': ERROR,
-      'no-undef': 'off',
+      'no-undef': ERROR,
       'no-undef-init': ERROR,
       'no-unexpected-multiline': ERROR,
       'no-unreachable': ERROR,
@@ -398,6 +398,17 @@ export const config = [
             { allowTernary: true },
           ],
           'import/consistent-type-specifier-style': [ERROR, 'prefer-inline'],
+
+          // Keep JS protected by core rules while allowing TS overload/declaration
+          // patterns and avoiding redundant reports in TS files.
+          'no-redeclare': 'off',
+          '@typescript-eslint/no-redeclare': [
+            ERROR,
+            {
+              ignoreDeclarationMerge: true,
+            },
+          ],
+          'no-undef': 'off',
 
           // Disable rules from presets
           '@typescript-eslint/consistent-type-definitions': 'off',

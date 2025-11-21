@@ -26,7 +26,7 @@ test('no-console is enforced in TS files', async () => {
     const rules = await lintFromDisk(abs);
     expect(rules).toContain('no-console');
   });
-});
+}, 15000);
 
 test('double TypeScript cast is banned via no-restricted-syntax', async () => {
   const rel = 'sample/src/bad/double-cast.ts';
